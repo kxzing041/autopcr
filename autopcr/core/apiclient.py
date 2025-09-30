@@ -73,12 +73,12 @@ class apiclient(Container["apiclient"]):
 
     @staticmethod
     def _encrypt(data: bytes, key: bytes) -> bytes:
-        aes = AES.new(key, AES.MODE_CBC, b'ha4nBYA2APUD6Uv1')
+        aes = AES.new(key, AES.MODE_CBC, b'7Fk9Lm3Np8Qr4Sv2')
         return aes.encrypt(apiclient._add_to_16(data)) + key
     @staticmethod
     def _decrypt(data: bytes) -> Tuple[bytes, bytes]:
         data = b64decode(data.decode('utf8'))
-        aes = AES.new(data[-32:], AES.MODE_CBC, b'ha4nBYA2APUD6Uv1')
+        aes = AES.new(data[-32:], AES.MODE_CBC, b'7Fk9Lm3Np8Qr4Sv2')
         return aes.decrypt(data[:-32]), data[-32:]
 
     @staticmethod
@@ -199,3 +199,4 @@ class apiclient(Container["apiclient"]):
     async def request(self, request: Request[TResponse]) -> TResponse:
         async with self._lck:
             return await self._request_internal(request)
+
